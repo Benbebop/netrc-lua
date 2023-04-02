@@ -33,7 +33,7 @@ function main(res, body)
 	
 	local path = url.parse(res.path, true)
 	
-	if (path.query or {}).pass ~= "ThugShakerCollection" then return {code = 401}, "Unauthorized" end
+	if (path.query or {}).pass ~= "ThugShaker" then return {code = 401}, "Unauthorized" end
 	path.query.pass = nil
 	
 	local pathParts = {path.pathname:match("^.-([^/]+).-(%a+)")}
