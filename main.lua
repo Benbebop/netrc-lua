@@ -139,3 +139,5 @@ elseif mode == 2 then
 	end
 	process.stdout:write(table.concat(str, "\n"))
 end
+
+os.exit()
