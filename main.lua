@@ -121,6 +121,8 @@ if mode > 0 then
 		file:write(table.concat(str, " "))
 	end
 	
+	file:close()
+	
 end
 
 if mode < 2 then
