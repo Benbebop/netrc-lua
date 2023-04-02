@@ -26,6 +26,8 @@ local options = {
 	password = "password"
 }
 
+local mainFile = args[1]:gsub("[^/\\]+$", "main.lua")
+
 function main(res, body)
 	if not res.path then return {code = 404}, "Not Found" end
 	
@@ -40,7 +42,7 @@ function main(res, body)
 	local method = methods[pathParts[2]:lower()]
 	if not method then return {code = 404}, "Not Found" end
 	
-	local args = {"main.lua", method}
+	local args = {mainFile, method}
 	
 	for i,v in pairs(path.query) do
 		local option = options[i]
