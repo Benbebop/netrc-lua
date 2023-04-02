@@ -80,8 +80,6 @@ else
 	login = default
 end
 
-local randomseedMode = (require("los").type() == "win32") and "L" or "H"
-
 if mode > 0 then
 	
 	if mode == 1 then
@@ -93,7 +91,7 @@ if mode > 0 then
 			login.password = options.password:gsub("%%auto(%b[])", function(args)
 				local pass = {}
 				for i=1,32 do
-					math.randomseed(string.unpack(randomseedMode, uv.random(4)))
+					math.randomseed(string.unpack("I4", uv.random(4)))
 					pass[i] = charset[math.random(charset.n)]
 				end
 				return table.concat(pass)
