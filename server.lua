@@ -56,7 +56,7 @@ function main(res, body)
 	
 	proc:waitExit()
 	
-	return {code = 200}, proc.stdout:read()
+	return {code = 200}, proc.stderr:read() or proc.stdout:read()
 end
 
 http.createServer("0.0.0.0", 22642, function(...)
