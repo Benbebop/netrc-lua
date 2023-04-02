@@ -1,5 +1,7 @@
 local uv, http, spawn, url = require("uv"), require("coro-http"), require("coro-spawn"), require("url")
 
+local PASSWORD = ""
+
 local res_headers = {
    {"Content-Type", "text/markdown"}, -- Type of the response's payload (res_payload)
    {"Connection", "close"}, -- Whether to keep the connection alive, or close it
@@ -33,7 +35,7 @@ function main(res, body)
 	
 	local path = url.parse(res.path, true)
 	
-	if (path.query or {}).pass ~= "ThugShaker" then return {code = 401}, "Unauthorized" end
+	if (path.query or {}).pass ~= PASSWORD then return {code = 401}, "Unauthorized" end
 	path.query.pass = nil
 	
 	local pathParts = {path.pathname:match("^.-([^/]+).-(%a+)")}
